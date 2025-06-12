@@ -1,0 +1,43 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amulet-minecraft-worlds"
+version = "1.0"
+authors = [
+    {name = "James Clare"},
+]
+description = "A collections of Minecraft worlds used for testing"
+dynamic = ["readme"]
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = [
+    "setuptools>=42",
+    "wheel",
+    "black>=22.3",
+    "mypy",
+]
+
+[project.urls]
+Homepage = "https://www.amuletmc.com"
+Repository = "https://github.com/Amulet-Team/Amulet-Minecraft-Worlds"
+Issues = "https://github.com/Amulet-Team/Amulet-Minecraft-Worlds/issues"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.package-data]
+"*" = [
+    "*",
+]
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.md"], content-type = "text/markdown"}
