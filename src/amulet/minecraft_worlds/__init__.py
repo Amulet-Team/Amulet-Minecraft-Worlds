@@ -84,7 +84,9 @@ class WorldTemp:
     @property
     def path(self) -> str:
         if self._path is None:
-            raise RuntimeError("Path has not been created. Use the context manager to create the level.")
+            raise RuntimeError(
+                "Path has not been created. Use the context manager to create the level."
+            )
         return self._path
 
     def __enter__(self):

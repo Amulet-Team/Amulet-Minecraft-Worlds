@@ -1,6 +1,7 @@
 from typing import TypeVar, Any
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 def dynamic_cast(obj: Any, cls: type[T]) -> T:
     if isinstance(obj, cls):
@@ -56,7 +57,7 @@ class LevelData:
                     dynamic_cast(max_x, int),
                     dynamic_cast(max_y, int),
                     dynamic_cast(max_z, int),
-                )
+                ),
             )
 
 
@@ -67,7 +68,10 @@ class WorldData(LevelData):
     def _decode_level_data(self, level_data: dict) -> None:
         super()._decode_level_data(level_data)
         self.modified_time = dynamic_cast(level_data.pop("modified_time"), float)
-        self.max_version = tuple(dynamic_cast(v, int) for v in dynamic_cast(level_data.pop("max_version"), list))
+        self.max_version = tuple(
+            dynamic_cast(v, int)
+            for v in dynamic_cast(level_data.pop("max_version"), list)
+        )
 
 
 class JavaLevelData(WorldData):
