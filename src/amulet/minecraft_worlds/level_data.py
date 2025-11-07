@@ -12,6 +12,7 @@ class LevelData:
     platform: str
     version: str
     origin: str
+    level_name: str
     dim_height: dict[str, tuple[tuple[int, int, int], tuple[int, int, int]]]
 
     def __init__(self, data: dict) -> None:
@@ -22,6 +23,11 @@ class LevelData:
         self._decode_metadata(world_data)
         if world_data:
             raise RuntimeError("Unhandled data in world_data")
+
+        level_data = dynamic_cast(data.pop("level_data"), dict)
+        self._decode_level_data(level_data)
+        if level_data:
+            raise RuntimeError("Unhandled data in level_data")
 
         dim_height = dynamic_cast(data.pop("dim_height"), dict)
         self._decode_dim_height(dim_height)
@@ -34,6 +40,8 @@ class LevelData:
         self.version = dynamic_cast(world_data.pop("version"), str)
         self.origin = dynamic_cast(world_data.pop("origin"), str)
 
+    def _decode_level_data(self, level_data: dict) -> None:
+        self.level_name = dynamic_cast(level_data.pop("level_name"), str)
 
     def _decode_dim_height(self, dim_height: dict) -> None:
         self.dim_height = {}
