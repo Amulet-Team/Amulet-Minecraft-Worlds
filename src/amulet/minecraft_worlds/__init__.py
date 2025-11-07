@@ -3,7 +3,9 @@ import shutil
 from typing import Iterable
 import re
 import json
+import copy
 from tempfile import mkdtemp
+from .level_data import LevelData, JavaLevelData, BedrockLevelData
 
 
 def _get_world_path(world_rpath: str) -> str:
@@ -45,14 +47,16 @@ def _delete_path(path: str) -> None:
 class WorldTemp:
     _src_path: str
     _temp_dir: str | None
-    path: str | None
+    _path: str | None
     _metadata: dict | None
+    _level_data: LevelData | None
 
     def __init__(self, world_rpath: str):
         self._src_path = _get_world_path(world_rpath)
         self._temp_dir = None
-        self.path = None
+        self._path = None
         self._metadata = None
+        self._level_data = None
 
     def __repr__(self) -> str:
         return f"WorldTemp({self._src_path})"
@@ -62,16 +66,37 @@ class WorldTemp:
         if self._metadata is None:
             with open(os.path.join(self._src_path, "world_test_data.json")) as f:
                 self._metadata = json.load(f)
-        return self._metadata
+        return copy.deepcopy(self._metadata)
+
+    @property
+    def level_data(self) -> LevelData:
+        if self._level_data is None:
+            metadata = self.metadata
+            platform = metadata["world_data"]["platform"]
+            if platform == "java":
+                return JavaLevelData(metadata)
+            elif platform == "bedrock":
+                return BedrockLevelData(metadata)
+            else:
+                raise RuntimeError(f'Unknown platform "{platform}"')
+        return copy.deepcopy(self._level_data)
+
+    @property
+    def path(self) -> str:
+        if self._path is None:
+            raise RuntimeError(
+                "Path has not been created. Use the context manager to create the level."
+            )
+        return self._path
 
     def __enter__(self):
-        self._temp_dir, self.path = _create_temp(self._src_path)
+        self._temp_dir, self._path = _create_temp(self._src_path)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         _delete_path(self._temp_dir)
         self._temp_dir = None
-        self.path = None
+        self._path = None
 
 
 from .worlds_src import (

@@ -4,6 +4,11 @@
 		"version": "1.16.5",
 		"origin": "forge"
 	},
+	"level_data": {
+		"level_name": "1.16 Mod",
+		"modified_time": 1622038083.013,
+		"max_version": [2586]
+	},
 	"dim_height": {
 		"minecraft:overworld": [[-30000000, 0, -30000000], [30000000, 256, 30000000]],
 		"minecraft:the_nether": [[-30000000, 0, -30000000], [30000000, 256, 30000000]],
