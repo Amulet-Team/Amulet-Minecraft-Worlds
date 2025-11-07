@@ -5,7 +5,8 @@
 		"origin": "vanilla"
 	},
 	"level_data": {
-		"level_name": "1_17_1_caves_and_cliffs"
+		"level_name": "1_17_1_caves_and_cliffs",
+		"modified_time": 1638286053.826
 	},
 	"dim_height": {
 		"minecraft:overworld": [[-30000000, -64, -30000000], [30000000, 320, 30000000]],

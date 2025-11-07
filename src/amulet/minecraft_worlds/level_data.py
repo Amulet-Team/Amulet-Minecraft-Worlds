@@ -60,9 +60,17 @@ class LevelData:
             )
 
 
-class JavaLevelData(LevelData):
+class WorldData(LevelData):
+    modified_time: float
+
+    def _decode_level_data(self, level_data: dict) -> None:
+        super()._decode_level_data(level_data)
+        self.modified_time = dynamic_cast(level_data.pop("modified_time"), float)
+
+
+class JavaLevelData(WorldData):
     pass
 
 
-class BedrockLevelData(LevelData):
+class BedrockLevelData(WorldData):
     pass

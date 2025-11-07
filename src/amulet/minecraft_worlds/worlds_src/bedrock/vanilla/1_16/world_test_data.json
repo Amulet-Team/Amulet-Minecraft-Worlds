@@ -5,7 +5,8 @@
 		"origin": "vanilla"
 	},
 	"level_data": {
-		"level_name": "Bedrock 1.16"
+		"level_name": "Bedrock 1.16",
+		"modified_time": 1605621734.0
 	},
 	"dim_height": {
 		"minecraft:overworld": [[-30000000, 0, -30000000], [30000000, 256, 30000000]],
