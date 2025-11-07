@@ -6,7 +6,8 @@
 	},
 	"level_data": {
 		"level_name": "1.20_custom_height_reference",
-		"modified_time": 1695201971.978
+		"modified_time": 1695201971.978,
+		"max_version": [3465]
 	},
 	"dim_height": {
 		"minecraft:overworld": [[-30000000, -64, -30000000], [30000000, 320, 30000000]],

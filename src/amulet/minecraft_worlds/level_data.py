@@ -1,4 +1,5 @@
 from typing import TypeVar, Any
+from amulet.core.version import VersionNumber
 
 T = TypeVar('T')
 
@@ -62,10 +63,12 @@ class LevelData:
 
 class WorldData(LevelData):
     modified_time: float
+    max_version: VersionNumber
 
     def _decode_level_data(self, level_data: dict) -> None:
         super()._decode_level_data(level_data)
         self.modified_time = dynamic_cast(level_data.pop("modified_time"), float)
+        self.max_version = VersionNumber(*(dynamic_cast(v, int) for v in dynamic_cast(level_data.pop("max_version"), list)))
 
 
 class JavaLevelData(WorldData):

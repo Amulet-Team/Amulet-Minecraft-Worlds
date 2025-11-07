@@ -6,7 +6,8 @@
 	},
 	"level_data": {
 		"level_name": "Dimension Test 1.12 Mod",
-		"modified_time": 1622032958.567
+		"modified_time": 1622032958.567,
+		"max_version": [1343]
 	},
 	"dim_height": {
 		"minecraft:overworld": [[-30000000, 0, -30000000], [30000000, 256, 30000000]],

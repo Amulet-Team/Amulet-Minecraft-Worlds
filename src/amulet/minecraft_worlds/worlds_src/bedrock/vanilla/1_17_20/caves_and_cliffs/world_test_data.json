@@ -6,7 +6,8 @@
 	},
 	"level_data": {
 		"level_name": "1.17.20 CNC",
-		"modified_time": 1638871145.0
+		"modified_time": 1638871145.0,
+		"max_version": [1, 17, 20, 22, 0]
 	},
 	"dim_height": {
 		"minecraft:overworld": [[-30000000, -64, -30000000], [30000000, 320, 30000000]],
